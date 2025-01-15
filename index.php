@@ -47,7 +47,9 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Lỗi!',
-                        text: data.error
+                        text: data.error,
+                        heightAuto: false,
+                        scrollbarPadding: false
                     });
                     return;
                 }
@@ -57,13 +59,17 @@
                 <button onclick="navigator.clipboard.writeText('${data.shortUrl}').then(() => Swal.fire({
                     icon: 'success',
                     title: 'Đã sao chép!',
-                    timer: 1500
+                    timer: 1500,
+                    heightAuto: false,
+                    scrollbarPadding: false
                 }))">Sao chép</button>
             `;
             } catch (error) {
                 Swal.fire({
                     icon: 'error',
-                    text: 'Không thể kết nối đến máy chủ!'
+                    text: 'Không thể kết nối đến máy chủ!',
+                    heightAuto: false,
+                    scrollbarPadding: false
                 });
             }
         };
