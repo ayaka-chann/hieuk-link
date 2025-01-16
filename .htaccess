@@ -2,4 +2,13 @@ RewriteEngine On
 RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^([a-zA-Z0-9]+)/?$ shorten.php?code=$1 [L,QSA]
+
+# Rút gọn đường dẫn cho trang Shorten URL
+RewriteRule ^rutgonlink$ pages/shorten.php [L]
+
+# Rút gọn đường dẫn cho trang Notepad
+RewriteRule ^notepad$ pages/notepad.php [L]
+
+RewriteRule ^([a-zA-Z0-9]+)/?$ ajaxs/shorten.php?code=$1 [L,QSA]
+RewriteRule ^n/([a-zA-Z0-9]{3,20})/?$ pages/notepad.php?code=$1 [L,QSA]
+

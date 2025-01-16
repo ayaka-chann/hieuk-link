@@ -1,3 +1,4 @@
+/* Base styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f4f4f9;
@@ -14,16 +15,16 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%;
+  width: 100%;
   max-width: 400px;
   text-align: center;
 }
 
-h1 {
-  margin-bottom: 20px;
-  color: #007bff;
+.container-notepad {
+  max-width: 800px;
 }
 
+/* Forms and Content */
 form {
   display: flex;
   flex-direction: column;
@@ -31,30 +32,44 @@ form {
 }
 
 input[type="url"],
-input[type="text"] {
+input[type="text"],
+textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
+textarea {
+  height: 300px;
+  resize: vertical;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+textarea[readonly] {
+  background-color: #f9f9f9;
+  border: none;
+  resize: none;
+}
+
+/* Buttons */
+.btn,
 button {
   padding: 10px 20px;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
   transition: background-color 0.3s;
+  background-color: #007bff;
 }
 
+.btn:hover,
 button:hover {
   background-color: #0056b3;
-}
-
-.result {
-  margin-top: 20px;
 }
 
 .result button {
@@ -65,42 +80,49 @@ button:hover {
   background-color: #218838;
 }
 
+/* Button Links */
+.home-button {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+}
+
+/* Utility Classes */
+.hidden {
+  display: none;
+}
+
 .error {
   color: #dc3545;
   margin-top: 5px;
+  font-size: 14px;
 }
 
-.error-page {
-  text-align: center;
+/* Notepad View */
+.notepad-view {
+  width: 100%;
 }
 
-.error-page h1 {
-  color: #ff6347;
-}
-
-.error-page .button {
-  display: inline-block;
-  margin-top: 20px;
-  text-decoration: none;
-}
-
-/* 404 page styles */
-.error-page {
-  background: #f7f7f7;
-  font-family: "Arial", sans-serif;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
+.view-content {
+  min-width: 90%;
+  min-height: 300px;
   padding: 20px;
-  box-sizing: border-box;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1.6;
+  background: #f8f9fa;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.error-container {
+/* Error Page */
+.error-page {
   text-align: center;
-  animation: fadeIn 0.5s ease-in;
+  background: #f7f7f7;
+  padding: 20px;
 }
 
 .error-code {
@@ -113,45 +135,7 @@ button:hover {
   animation: bounce 2s infinite;
 }
 
-.error-message {
-  font-size: 24px;
-  color: #2c3e50;
-  margin: 20px 0;
-}
-
-.home-button {
-  display: inline-block;
-  padding: 12px 30px;
-  background: #3498db;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-  transition: transform 0.2s, background 0.2s;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-.home-button:hover {
-  background: #2980b9;
-  transform: translateY(-2px);
-}
-
-.illustration {
-  margin: 20px 0;
-  font-size: 80px;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Animations */
 @keyframes bounce {
   0%,
   20%,
@@ -165,5 +149,17 @@ button:hover {
   }
   60% {
     transform: translateY(-10px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%;
+    margin: 10px;
+  }
+
+  button {
+    width: 100%;
   }
 }
