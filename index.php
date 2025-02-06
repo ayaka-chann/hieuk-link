@@ -7,8 +7,8 @@ include_once 'pages/header.php';
     <main class="main-content">
         <h1><?= htmlspecialchars($title) ?></h1>
         <div class="action-buttons">
-            <button><a href="/rutgonlink" class="home-button">Rút gọn URL</a></button>
-            <button><a href="/notepad" class="home-button">HK Notepad</a></button>
+            <button class="home-button" onclick="window.location.href='/rutgonlink'">Rút gọn URL</button>
+            <button class="home-button" onclick="window.location.href='/notepad'">HK Notepad</button>
         </div>
     </main>
 </div>

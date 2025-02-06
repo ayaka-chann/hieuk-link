@@ -13,10 +13,9 @@ include_once 'header.php';
         </div>
         <button type="submit">Rút gọn ngay</button>
     </form>
-    <div class="result"></div>
-    <br>
+    <div class="result"></div><br>
     <div class="action-buttons">
-        <button><a href="/" class="home-button">Quay về trang chủ</a></button>
+        <button type="button" onclick="window.location.href='/'" class="home-button">Quay về trang chủ</button>
     </div>
 </div>
 
@@ -25,7 +24,7 @@ include_once 'header.php';
         document.getElementById('customAlias').classList.toggle('hidden');
     };
 
-    document.getElementById('shortenForm').onsubmit = async (e) => {
+    document.getElementById('shortenForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const resultDiv = document.querySelector('.result');
@@ -35,6 +34,7 @@ include_once 'header.php';
                 method: 'POST',
                 body: formData,
             });
+            if (!response.ok) throw new Error('Lỗi kết nối đến máy chủ!');
             const data = await response.json();
 
             if (data.error) {
@@ -51,23 +51,27 @@ include_once 'header.php';
                 <p>Link rút gọn của bạn: <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a></p>
                 <button onclick="copyToClipboard('${data.shortUrl}')">Sao chép</button>
             `;
-        } catch {
+        } catch (error) {
+            console.error(error);
             Swal.fire({
                 icon: 'error',
+                title: 'Lỗi!',
                 text: 'Không thể kết nối đến máy chủ!',
                 heightAuto: false,
             });
         }
-    };
+    });
 
     const copyToClipboard = (url) => {
-        navigator.clipboard.writeText(url).then(() => {
-            Swal.fire({
-                icon: 'success',
-                title: 'Đã sao chép!',
-                timer: 1500,
-                heightAuto: false,
-            });
-        });
+        navigator.clipboard.writeText(url)
+            .then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Đã sao chép!',
+                    timer: 1500,
+                    heightAuto: false,
+                });
+            })
+            .catch(console.error);
     };
 </script>

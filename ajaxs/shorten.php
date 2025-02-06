@@ -3,7 +3,7 @@ require __DIR__ . '/../config.php';
 
 function generateRandomString($length = 6)
 {
-    return substr(str_shuffle('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'), 0, $length);
+    return bin2hex(random_bytes($length / 2));
 }
 
 function getCurrentUrl()
